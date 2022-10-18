@@ -1,0 +1,78 @@
+<div style="color:black;">
+	<div class="col-lg-12 row">
+		<h2>Welcome  {{user}}</h2>
+	</div>
+	<div class="col-lg-12 row">
+		<h4>List of your bids</h4>
+	</div>
+	<div class="col-lg-12 row">
+		<div class="col-lg-8">
+			<table id="bid_table">
+				<thead>
+					<tr>
+						<td>S.No.</td>
+						<td>Product Name</td>
+						<td>Min Bid</td>
+						<td>Valid Till</td>
+						<td>Image</td>
+						<td>Category</td>
+						<td>Your bid</td>
+						<td>Status</td>
+					</tr>
+				</thead>
+				{% for b in bids %}
+					<tr>
+						<td>{{forloop.counter}}</td>
+						<td><a id="{{b.product.id}}" class="prod" onclick="display_product({'prod_id':{{b.product.id}},'no_bid':'no_bid'})"><u>{{b.product.product_name}}</u></a></td>
+						<td>{{b.product.min_bid}}</td>
+						<td>{{b.product.valid_date}}</td>
+						<td>{{b.product.image}}</td>
+						<td>{{b.product.category}}</td>
+						<td>{{b.bid_amount}}</td>
+						<td><button class="btn btn-danger" onclick="remove_bid({{b.id}})">Cancel Bid</button></td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+		<div class="col-lg-4" id="product_description" style="background-color:#1dc9d1;border-radius: 10px;">
+			
+		</div>
+	</div>
+	<div class="col-lg-12 row" style="margin-top: 50px;">
+		<hr style="border-top:1px solid black !important;">
+		<div class="col-lg-12">
+			<h3>Your successfully executed bids will be displayed below</h3>
+			<table id="executed_bids">
+				<thead>
+					<tr>
+						<td>Product Name</td>
+						<td>Amount Bid</td>
+						<td></td>
+					</tr>
+				</thead>
+				{% for bids in successfully_executed_list %}
+					<tr>
+						<td>{{bids.product.product_name}}</td>
+						<td>{{bids.bid_amt}}</td>
+						<td>Successfully Executed</td>
+					</tr>
+				{%endfor%}
+			</table>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#bid_table').DataTable({
+			scrollY: '400px',
+			scrollCollapse: true,
+			paging: false,
+		});
+		$('#executed_bids').DataTable({
+			scrollY: '400px',
+			scrollCollapse: true,
+			paging: false,
+		});		
+	});	
+</script>

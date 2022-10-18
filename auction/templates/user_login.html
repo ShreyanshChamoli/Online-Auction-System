@@ -1,0 +1,67 @@
+{% load static %}
+<style type="text/css">	
+.center {
+  margin-left: auto;
+  margin-right: auto;
+   margin-top: auto;
+   margin-bottom: auto;
+}
+
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body style="background-color: #a9b0b5;">
+<div id="wrapper">        
+	<div class="container">
+		<div class="container">
+			<div class="row" style="margin:auto;padding-top:20vh;">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="login-panel panel panel-default" style="background-color:rgba(245,245,250,0.7);border:0px;margin-top: 10px;">
+						<div class="panel-heading" style="background-color:rgba(255,255,255,0);border:0px;text-align:center;">
+							<center><img src="/static/images/auction" style="width:201px;height:109px;"></center>						
+							<!-- <img class="resize_cursor" data-enlargeable id="ship_image" style="height: 160px;width: 250px;" src="data:image/jpeg;base64,{{image}}" alt=""></p></td> -->
+						</div>
+						<div class="panel-body">
+							<form role="form" id="login_form" method="post" onsubmit="return false;">
+								<input type="hidden" name="csrfmiddlewaretoken" value="N65jyN2Y6cubdr6dp4l0wpFc9VQc9zAp">								
+								<div class="form-group" style="padding-bottom:20px;">
+								<input class="form-control inputs" placeholder="Username" name="username" type="text" id="user_name" autocomplete="off">
+								</div>
+								<div class="form-group" style="padding-bottom:20px;">
+								<input class="form-control inputs" placeholder="Password" name="password" type="password" id="password" value="">
+								</div>								
+								<div class="checkbox">								
+								</div>								
+								<img src="/static/spinner.gif" id="loader" style="display:none;width:20%; margin-left: auto;margin-right: auto;">
+								<button id="login_button" class="btn btn-lg btn-success btn-block" style="background-color:rgb(50,50,150);border:0px; font-size: 15px;">Login</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+	$('#login_button').click(function(){
+		var form_data={}
+		$('.inputs').each(function(){
+			form_data[$(this).attr('id')]=$(this).val()
+		})
+		$.ajax({
+			url:'/auction/user_login',
+			data:form_data,
+			type:'POST',
+			success:function(obj){
+				alert('Login Successful')
+				window.open(window.location.origin+obj,'_self')
+			},
+			error:function(err){
+				alert('Enter correct username and password')
+			}
+		})
+	})
+</script>
+
+

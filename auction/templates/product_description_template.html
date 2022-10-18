@@ -1,0 +1,59 @@
+<div class="col-lg-12 row">
+	<div class="col-lg-4">
+		Product Name
+	</div>
+	<div class="col-lg-8">
+		{{product.product_name}}<input style="display: none;" type="" id="product_id" class="bid" value="{{product.id}}">
+	</div>
+</div>
+<div class="col-lg-12 row">
+	<div class="col-lg-4">
+		Product Desciption
+	</div>
+	<div class="col-lg-8">
+		<textarea rows="4" cols="35" class="sell_prod" id="product_description" readonly="">{{product.product_description}}</textarea>
+	</div>
+</div>
+<div class="col-lg-12 row">
+	<div class="col-lg-4">
+		Mininmum Bid
+	</div>
+	<div class="col-lg-8">
+		{{product.min_bid}}
+	</div>
+</div>
+<div class="col-lg-12 row">
+	<div class="col-lg-4">
+		Valid Till
+	</div>
+	<div class="col-lg-8">
+		{{product.valid_date}}
+	</div>
+</div>
+<div class="col-lg-12 row">
+	<div class="col-lg-4">
+		Category
+	</div>
+	<div class="col-lg-8">
+		{{product.category}}
+	</div>
+</div>
+<div class="col-lg-12 row">
+	<img style="width: 319px;height: 360px" src="/static/images/product_images/{{product.id}}">
+</div>
+{% if no_bid == False %}
+<div class="col-lg-12 row bg-primary" style="margin-top:20px;border-radius:3px;padding:5px;">
+	<div class="col-lg-3" style="font-size: 14px;">
+		<b>MAKE YOUR BID</b>
+	</div>
+	
+		<div class="col-lg-6">
+			<input class="bid" type="" name="" style="color:black" id="bid_amount">
+			<button style="margin-left: 5px;" class="btn btn-success" id="make_bid">Make Bid</button>
+		</div>
+	
+	<div class="col-lg-3">
+		
+	</div>
+</div>
+{% endif %}

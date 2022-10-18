@@ -1,0 +1,39 @@
+<style type="text/css">
+	table.dataTable thead th, table.dataTable thead td {
+		padding:4px !important;
+	}
+</style>
+<div id="buy_page_container" class="col-lg-6" style="color:black;">
+	<table id="buy_table">
+		<thead>
+			<tr>
+			{% for d in header %}
+				<td>{{d}}</td>
+			{% endfor %}
+		</tr>	
+		</thead>
+		
+		{% for p in products %}
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td><a id="{{p.id}}" class="prod" onclick="display_product({'prod_id':{{p.id}}})"><u>{{p.product_name}}</u></a> </td>
+			<td>{{p.min_bid}}</td>
+			<td>{{p.valid_date}}</td>
+			<td><img src="{{p.image}}" style="height:40px;width:60px"></td>
+			<td>{{p.category}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+<div class="col-lg-6" id="product_description" style="color: black;" >
+	
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#buy_table').DataTable({
+			scrollY: '400px',
+			scrollCollapse: true,
+			paging: false,
+		});
+	});
+</script>
